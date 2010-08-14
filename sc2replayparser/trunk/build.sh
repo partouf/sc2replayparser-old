@@ -69,8 +69,9 @@ fi
 
 
 cd StormLib
-make -f $makefile clean
-make -f $makefile
+# these are lower case, so no varsharing :(
+make -f makefile.linux clean
+make -f makefile.linux
 cd ..
 
 make -f $makefile clean
