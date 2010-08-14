@@ -16,7 +16,7 @@ protected:
 
    void determinePlayerNameAndRace( const TGFString *playerblock, TGFString *player, TGFString *race );
    void determinePlayerBlocks( TGFStringVector *v );
-   int determineTeam( const TGFString *playerblock );
+   unsigned int determineTeam( const TGFString *playerblock );
    void determineMap( const TGFString *block, TGFString *mapname );
 public:
    TGFStringProperty mapname;
