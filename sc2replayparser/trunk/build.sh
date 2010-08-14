@@ -68,9 +68,10 @@ fi
 fi
 
 
-cd Stormlib
+cd StormLib
 make -f $makefile clean
 make -f $makefile
+cd ..
 
 make -f $makefile clean
 env ARCHS="$ARCHS" \
