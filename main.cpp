@@ -98,8 +98,8 @@ int main( int argc, char ** argv ) {
          } else {
             printf( "Usage: sc2replayparser <fullpath> <fileid>\n" );
             return 2;
-//            iFileId = 115;
-//            mpqfile.setValue_ansi( "D:\\Scrap Station (2).SC2Replay" );
+//            iFileId = 116;
+//            mpqfile.setValue_ansi( "D:\\Scrap Station (3).SC2Replay" );
          }
 
          if ( iFileId == 0 ) {

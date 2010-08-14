@@ -24,9 +24,10 @@ void CDetailsParser::determinePlayerBlocks( TGFStringVector *v ) {
    mapblockstart.append( 0x02 );
    mapblockstart.append( 0x02 );
 
+   const char *s = data.getValue(); 
+
    int p1 = data.pos( 0, &playerblockstart );
    if ( p1 != -1 ) {
-      const char *s = data.getValue(); 
       totalplayercount = floor(s[p1 - 1] / 2.0);
    }
 
@@ -40,14 +41,28 @@ void CDetailsParser::determinePlayerBlocks( TGFStringVector *v ) {
       } else {
          int p3 = data.pos(p1, &mapblockstart );
          if ( p3 != -1 ) {
-            chunk = new TGFString();
-            chunk->setValue( data.getPointer(p1), p3 - p1 );
-            v->addChunk( chunk );
+            while ( !isalpha(s[p3+3]) ){
+               p3 = data.pos(p3+1, &mapblockstart );
+               if ( p3 != -1 ) {
+               } else {
+                  break;
+               }
+            }
 
-            // last block is hopefully the map block
-            chunk = new TGFString();
-            chunk->setValue( data.getPointer(p3), data.getLength() - p3 );
-            v->addChunk( chunk );
+            if ( p3 != -1 ) {
+               chunk = new TGFString();
+               chunk->setValue( data.getPointer(p1), p3 - p1 );
+               v->addChunk( chunk );
+
+               // last block is hopefully the map block
+               chunk = new TGFString();
+               chunk->setValue( data.getPointer(p3), data.getLength() - p3 );
+               v->addChunk( chunk );
+            } else {
+               chunk = new TGFString();
+               chunk->setValue( data.getPointer(p1), data.getLength() - p1 );
+               v->addChunk( chunk );
+            }
          } else {
             chunk = new TGFString();
             chunk->setValue( data.getPointer(p1), data.getLength() - p1 );
@@ -76,16 +91,12 @@ void CDetailsParser::determinePlayerNameAndRace( const TGFString *playerblock, T
 unsigned int CDetailsParser::determineTeam( const TGFString *playerblock ) {
    char *s = playerblock->getValue();
    BYTE i = s[playerblock->getLength()-1];
-   if ( i != 0x00 ) {
-      return floor(i / 2.0);
-   } else {
-      // determine by ammount of players /2
-      int iTeamsize = floor(totalplayercount / 2.0);
-      if ( lstPlayers_team1.size() < iTeamsize ) {
-         return 1;
-      } else if ( lstPlayers_team2.size() < iTeamsize ) {
-         return 2;
-      }
+   // determine by ammount of players /2
+   int iTeamsize = floor(totalplayercount / 2.0);
+   if ( lstPlayers_team1.size() < iTeamsize ) {
+      return 1;
+   } else if ( lstPlayers_team2.size() < iTeamsize ) {
+      return 2;
    }
 
    return 0;
