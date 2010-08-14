@@ -92,7 +92,7 @@ int main( int argc, char ** argv ) {
             v.setString( argv[2] );
             iFileId = v.asInteger();
          } else {
-            printf( "Usage: sc2replayparser <fileid> <fullpath>\n" );
+            printf( "Usage: sc2replayparser <fullpath> <fileid>\n" );
             return 2;
          }
 

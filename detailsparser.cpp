@@ -72,17 +72,19 @@ int CDetailsParser::determineTeam( const TGFString *playerblock ) {
    char *s = playerblock->getValue();
    BYTE i = s[playerblock->getLength()-1];
 
-   if ( i != 0x00 ) {
+/*
+if ( i != 0x00 ) {
       return floorl(i / 2);
    } else {
-      // determine by ammount of players /2
+*/
+   // determine by ammount of players /2
       int iTeamsize = floorl(totalplayercount / 2);
       if ( lstPlayers_team1.size() < iTeamsize ) {
          return 1;
       } else if ( lstPlayers_team2.size() < iTeamsize ) {
          return 2;
       }
-   }
+//   }
 
    return 0;
 }
