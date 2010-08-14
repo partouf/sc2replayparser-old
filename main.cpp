@@ -7,8 +7,12 @@
 
 #include <MySQLBooks/MySQLSquirrel.h>
 
-#undef _DLL
-#include <StormLib.h>
+#ifdef _MSC_VER
+   #include <SFmpq_static.h>
+#else
+   #include <StormLib.h>
+#endif
+
 
 #include "detailsparser.h"
 
@@ -94,6 +98,8 @@ int main( int argc, char ** argv ) {
          } else {
             printf( "Usage: sc2replayparser <fullpath> <fileid>\n" );
             return 2;
+//            iFileId = 115;
+//            mpqfile.setValue_ansi( "D:\\Scrap Station (2).SC2Replay" );
          }
 
          if ( iFileId == 0 ) {
@@ -137,7 +143,7 @@ int main( int argc, char ** argv ) {
 
       finiGroundfloor();
    }
-
+   system("pause");
 //   _CrtDumpMemoryLeaks();
    printf( "Done\n" );
 
