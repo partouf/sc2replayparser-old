@@ -68,6 +68,10 @@ fi
 fi
 
 
+cd Stormlib
+make -f $makefile clean
+make -f $makefile
+
 make -f $makefile clean
 env ARCHS="$ARCHS" \
 make -f $makefile
