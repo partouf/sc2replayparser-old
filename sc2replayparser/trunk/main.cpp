@@ -79,9 +79,9 @@ int main( int argc, char ** argv ) {
    if ( initGroundfloor() ) {
       if ( initMySQLBooks() ) {
          TMySQLSquirrelConnection conn;
-         conn.host.set("dedicated1.inaspro.nl");
-         conn.username.set("patrick");
-         conn.password.set("eekhoornmetvleugels");
+         conn.host.set("127.0.0.1");
+         conn.username.set("yafbox");
+         conn.password.set("");
          conn.connect();
          conn.selectDatabase("yafbox");
 
