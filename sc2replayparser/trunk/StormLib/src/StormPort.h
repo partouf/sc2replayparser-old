@@ -105,7 +105,9 @@
   typedef unsigned char  BYTE;
   typedef unsigned short USHORT;
   typedef int            LONG;
+#ifndef DWORD
   typedef unsigned int   DWORD;
+#endif
   typedef unsigned long  DWORD_PTR;
   typedef long           LONG_PTR;
   typedef long           INT_PTR;
