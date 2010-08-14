@@ -76,7 +76,6 @@ void CDetailsParser::determinePlayerNameAndRace( const TGFString *playerblock, T
 unsigned int CDetailsParser::determineTeam( const TGFString *playerblock ) {
    char *s = playerblock->getValue();
    BYTE i = s[playerblock->getLength()-1];
-   printf( "debuginfo - team i: %d, totalplayers: %d\n", i, totalplayercount );
    if ( i != 0x00 ) {
       return floor(i / 2.0);
    } else {

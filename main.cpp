@@ -143,7 +143,7 @@ int main( int argc, char ** argv ) {
 
       finiGroundfloor();
    }
-   system("pause");
+   //system("pause");
 //   _CrtDumpMemoryLeaks();
    printf( "Done\n" );
 
