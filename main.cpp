@@ -7,6 +7,7 @@
 
 #include <MySQLBooks/MySQLSquirrel.h>
 
+#undef _DLL
 #include <StormLib.h>
 
 #include "detailsparser.h"
@@ -15,12 +16,12 @@
 CDetailsParser *parser;
 
 
-bool MapMpqFile( MPQHANDLE mpq, LPCSTR Name, TGFString *data ) {
-  MPQHANDLE file;
-  if ( SFileOpenFileEx( mpq, Name, 0, &file ) == 0 ) {
+bool MapMpqFile( HANDLE mpq, const char *name, TGFString *data ) {
+  HANDLE file;
+  if ( SFileOpenFileEx( mpq, name, 0, &file ) == 0 ) {
      return false;
   }
-  DWORD sz,ss;
+  unsigned int sz,ss;
   sz = SFileGetFileSize( file, 0 );
   data->setLength( sz );
 
@@ -105,12 +106,7 @@ int main( int argc, char ** argv ) {
             return 2;
          }
 
-         if (MpqInitialize()==FALSE) {
-            printf("Can't initialize sfmpq.dll\n");
-            return 2;
-         };
-
-         MPQHANDLE mpq;
+         HANDLE mpq;
       
          if ( SFileOpenArchive( mpqfile.getValue(), 0, 0, &mpq ) ) {
          } else {
