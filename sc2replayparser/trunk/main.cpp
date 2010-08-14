@@ -7,7 +7,7 @@
 
 #include <MySQLBooks/MySQLSquirrel.h>
 
-#include <SFmpqapi.h>
+#include <StormLib.h>
 
 #include "detailsparser.h"
 
