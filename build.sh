@@ -72,6 +72,7 @@ cd StormLib
 # these are lower case, so no varsharing :(
 make -f makefile.linux clean
 make -f makefile.linux
+make -f makefile.linux install
 cd ..
 
 make -f $makefile clean
