@@ -231,14 +231,19 @@ COBJS = src/libtomcrypt/src/hashes/hash_memory.o \
 
 LIB = libStorm.so
 SLIB = libStorm.a
+BIN = libStorm_static.a
 
-all: $(OBJS) $(COBJS) $(LIB) $(SLIB)
+all: $(OBJS) $(COBJS) $(LIB) $(SLIB) $(BIN)
 
 $(LIB): $(OBJS) $(COBJS)
 	$(C++) $(ARCH) -shared -o $(LIB) $(OBJS) $(COBJS) $(LFLAGS)
 
 $(SLIB): $(OBJS) $(COBJS)
 	$(AR) rcs $(SLIB) $(OBJS) $(COBJS)
+	
+$(BIN): $(OBJS) $(COBJS)
+	ar r $(BIN) $(OBJS) $(COBJS)
+	ranlib $(BIN)
 
 clean:
 	rm -f $(OBJS) $(COBJS) $(LIB)
